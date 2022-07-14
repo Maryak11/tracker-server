@@ -13,6 +13,8 @@ const start = async () => {
     .addTag('Kirill Gurev')
     .build();
 
+  app.enableCors();
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, document);
 

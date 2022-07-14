@@ -3,7 +3,6 @@ import {
   Column,
   DataType,
   ForeignKey,
-  Index,
   Model,
   Table,
 } from 'sequelize-typescript';
@@ -29,6 +28,6 @@ export class Tracks extends Model<Tracks> {
   level: string;
 
   @ForeignKey(() => Pools)
-  @Column
-  poolId: number;
+  @Column({ type: DataType.TEXT, allowNull: false })
+  poolId: string;
 }

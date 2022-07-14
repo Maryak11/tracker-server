@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { PoolsModule } from './pools/pools.module';
+
+import { Tracks } from './tracks/tracks.model.';
+import { Pools } from './pools/pools.model';
+import { AuthModule } from './auth/auth.module';
 import { TracksModule } from './tracks/tracks.module';
+import { PoolsModule } from './pools/pools.module';
 
 @Module({
   controllers: [],
@@ -14,19 +18,18 @@ import { TracksModule } from './tracks/tracks.module';
 
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      timezone: process.env.DB_TIMEZONE,
-      models: [],
+      host: process.env.POSTGRES_HOST,
+      port: +process.env.POSTGRES_PORT,
+      username: process.env.POSTGRES_USERNAME,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DATABASE,
+      models: [Tracks, Pools],
       autoLoadModels: true,
     }),
 
-    PoolsModule,
-
+    AuthModule,
     TracksModule,
+    PoolsModule,
   ],
 })
 export class AppModule {}

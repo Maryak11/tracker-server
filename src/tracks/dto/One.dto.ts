@@ -1,11 +1,4 @@
-import { Header } from '@nestjs/common';
-import {
-  IsEmail,
-  IsString,
-  Length,
-  IsNotEmpty,
-  IsDefined,
-} from 'class-validator';
+import { IsEmail, IsDefined } from 'class-validator';
 
 export class OneDto {
   @IsDefined()
